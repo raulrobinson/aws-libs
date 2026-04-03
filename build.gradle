@@ -21,7 +21,7 @@ subprojects {
     apply plugin: 'signing'
 
     group   = 'io.github.raulrobinson'
-    version = '1.0.0'
+    version = '1.0.1'
 
     java {
         sourceCompatibility = JavaVersion.VERSION_21
@@ -87,7 +87,7 @@ subprojects {
     }
 
     // ─── Signing — Fix compatible con Gradle 9.x + configuration cache ────────
-    signing {
+    /*signing {
         def rawKey      = findProperty('signingKey')      ?: System.getenv('GPG_PRIVATE_KEY')
         def signingPass = findProperty('signingPassword') ?: System.getenv('GPG_PASSPHRASE') ?: ''
 
@@ -95,6 +95,22 @@ subprojects {
         def signingKey = rawKey?.replace('\\n', '\n')
 
         useInMemoryPgpKeys(signingKey, signingPass)
+        sign publishing.publications.mavenJava
+    }*/
+
+    // ─── Signing — Fix compatible con Gradle 9.x + configuration cache ────────
+    // Se eliminó el bloque tasks.withType(Sign) con gradle.taskGraph
+    // que causaba el error de configuration cache en Gradle 9.x
+    signing {
+        def signingKey      = findProperty('signingKey')      ?: System.getenv('GPG_PRIVATE_KEY')
+        def signingPassword = findProperty('signingPassword') ?: System.getenv('GPG_PASSPHRASE')
+
+        if (signingKey) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+        } else {
+            useGpgCmd()
+        }
+
         sign publishing.publications.mavenJava
     }
 }
