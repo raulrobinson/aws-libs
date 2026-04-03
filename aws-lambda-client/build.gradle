@@ -1,0 +1,17 @@
+description = 'AWS Lambda async invocation client library'
+
+dependencies {
+    implementation 'software.amazon.awssdk:lambda'
+    implementation 'software.amazon.awssdk:sts'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name        = 'AWS Lambda Client'
+                description = project.description
+            }
+        }
+    }
+}

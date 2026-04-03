@@ -1,0 +1,17 @@
+description = 'AWS Secrets Manager reactive client library'
+
+dependencies {
+    implementation 'software.amazon.awssdk:secretsmanager'
+    implementation 'software.amazon.awssdk:sts'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name        = 'AWS Secrets Manager Client'
+                description = project.description
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+description = 'AWS EventBridge async client library'
+
+dependencies {
+    implementation 'software.amazon.awssdk:eventbridge'
+    implementation 'software.amazon.awssdk:sts'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name        = 'AWS EventBridge Client'
+                description = project.description
+            }
+        }
+    }
+}
