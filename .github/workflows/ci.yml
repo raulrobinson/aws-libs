@@ -24,5 +24,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build with Gradle
+      - name: Build
         run: ./gradlew build --no-configuration-cache
+
+  # JitPack construye y publica automáticamente cuando se crea un tag/release.
+  # No se necesita un job de publish aquí.
