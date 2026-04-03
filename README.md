@@ -10,6 +10,26 @@ git tag v1.0.0
 git push origin main --tags
 ```
 
+- consumir las librerías desde JitPack:
+```groovy
+repositories {
+    mavenCentral()
+    maven { url = uri("https://jitpack.io") }
+}
+
+dependencies {
+    implementation 'com.github.raulrobinson.aws-libs:aws-secrets-manager:v1.0.0'
+    implementation 'com.github.raulrobinson.aws-libs:aws-parameter-store:v1.0.0'
+    implementation 'com.github.raulrobinson.aws-libs:aws-lambda-client:v1.0.0'
+    implementation 'com.github.raulrobinson.aws-libs:aws-eventbridge:v1.0.0'
+}
+```
+
+- usar siempre el último commit de main (útil en desarrollo):
+```groovy
+implementation 'com.github.raulrobinson.aws-libs:aws-secrets-manager:main-SNAPSHOT'
+```
+
 Personal Java libraries for AWS service integration.
 Published to Maven Central under `io.github.raulrobinson`.
 
