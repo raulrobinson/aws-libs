@@ -1,43 +1,43 @@
-name: Publish to Maven Central
-
-on:
-  release:
-    types: [ created ]    # se dispara al crear un GitHub Release
-  workflow_dispatch:      # permite disparar manualmente desde GitHub UI
-
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Import GPG key
-        run: |
-          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
-          gpg --list-secret-keys
-
-      - name: Build and test
-        run: ./gradlew build --no-configuration-cache
-
-      - name: Publish to Maven Central
-        run: ./gradlew publishAllPublicationsToNmcpRepository --no-configuration-cache
-        env:
-          OSSRH_USERNAME:  ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD:  ${{ secrets.OSSRH_PASSWORD }}
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSPHRASE:  ${{ secrets.GPG_PASSPHRASE }}
+#name: Publish to Maven Central
+#
+#on:
+#  release:
+#    types: [ created ]    # se dispara al crear un GitHub Release
+#  workflow_dispatch:      # permite disparar manualmente desde GitHub UI
+#
+#jobs:
+#  publish:
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: read
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Set up JDK 21
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '21'
+#          distribution: 'temurin'
+#
+#      - name: Setup Gradle
+#        uses: gradle/actions/setup-gradle@v4
+#
+#      - name: Import GPG key
+#        run: |
+#          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+#          gpg --list-secret-keys
+#
+#      - name: Build and test
+#        run: ./gradlew build --no-configuration-cache
+#
+#      - name: Publish to Maven Central
+#        run: ./gradlew publishAllPublicationsToNmcpRepository --no-configuration-cache
+#        env:
+#          OSSRH_USERNAME:  ${{ secrets.OSSRH_USERNAME }}
+#          OSSRH_PASSWORD:  ${{ secrets.OSSRH_PASSWORD }}
+#          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+#          GPG_PASSPHRASE:  ${{ secrets.GPG_PASSPHRASE }}
 
 # ─── Secrets requeridos ────────────────────────────────────────────────────────
 # Configura en: Settings → Secrets and variables → Actions → New repository secret

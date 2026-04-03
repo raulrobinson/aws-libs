@@ -1,6 +1,16 @@
 # aws-libs
 
 Personal Java libraries for AWS service integration.
+Published to JitPack under `com.github.raulrobinson`.
+
+```bash
+git add .
+git commit -m "chore: migrate to JitPack"
+git tag v1.0.0
+git push origin main --tags
+```
+
+Personal Java libraries for AWS service integration.
 Published to Maven Central under `io.github.raulrobinson`.
 
 ## Modules
