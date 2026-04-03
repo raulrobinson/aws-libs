@@ -1,0 +1,17 @@
+description = 'AWS SSM Parameter Store reactive client library'
+
+dependencies {
+    implementation 'software.amazon.awssdk:ssm'
+    implementation 'software.amazon.awssdk:sts'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name        = 'AWS Parameter Store Client'
+                description = project.description
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+rootProject.name = 'aws-libs'
+
+//include 'aws-secrets-manager'
+include 'aws-parameter-store'
+//include 'aws-lambda-client'
+//include 'aws-eventbridge'
